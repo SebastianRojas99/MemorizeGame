@@ -8,67 +8,73 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var emojisArray: Array<String> = ["🐍","🦈","🐊","🦫","🦫",]
+    @State var emojisArray: Array<String> = ["🐍","🐍","🦈","🦈","🐊","🐊","🦫","🦫",]
     @State var cardCount:Int = 4
     var body: some View {
         
         VStack{
-            HStack{
-                
-                
-                
-                Button(action: {if cardCount >= 2{
-                    cardCount -= 1
-                }}, label: {
-                    Image(systemName: "arrow.backward.to.line.circle.fill")
-                }).font(.largeTitle).padding()
-                
-                Spacer()
-                
-                Button(action: {
-                    if emojisArray.count <= cardCount{
-                        cardCount += 0
-                    }else{
-                        cardCount += 1
-                    }
-                }, label: {
-                    Image(systemName: "plus.circle.fill")
-                }).font(.largeTitle).padding()
-                
+            cardsCountHelpers
+            Spacer()
+            ScrollView{
+                cards
             }
             
-            HStack {
-                ForEach(0..<cardCount,id: \.self){index in
-                    CardView(content:emojisArray[index])
-                }
-            }.padding()
-            .foregroundStyle(Color.purple)
-            
-                
         }
     }
     
+    var cards:some View{
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 120))]) {
+            ForEach(0..<cardCount,id: \.self){index in
+                CardView(content:emojisArray[index])
+                    .aspectRatio(2/3,contentMode: .fit)
+            }
+        }.padding()
+        .foregroundStyle(Color.purple)
+    }
+    
+    var cardsCountHelpers:some View{
+        HStack{
+            cardAdder
+            Spacer()
+            cardRemover
+        }
+    }
+    
+    func cardCountHelper(by offset:Int,symbol:String) -> some View{
+        Button(action: {
+            cardCount += offset
+        }, label: {
+            Image(systemName: symbol)
+        })
+        .font(.largeTitle).padding()
+        .disabled(cardCount + offset < 1 || cardCount + offset > emojisArray.count )
+    }
+    
+    var cardAdder:some View{
+        return cardCountHelper(by: +1, symbol: "rectangle.stack.badge.plus.fill")
+    }
+    
+    var cardRemover:some View{
+        return cardCountHelper(by: -1, symbol: "rectangle.stack.badge.minus.fill")
+    }
+
     struct CardView:View {
         var content:String
-        
         @State var isFaceUp = true
-        
         var body: some View {
             ZStack{
                 let base = RoundedRectangle(cornerRadius: 12)
-                
-                if isFaceUp{
+                Group{
                     base.foregroundStyle(Color.white)
                     base.strokeBorder(lineWidth: 2)
                     Text(content).font(.largeTitle)
                         .imageScale(.large)
                         .foregroundStyle(.tint)
-                }else{
-                    RoundedRectangle(cornerRadius: 12)
-                    Text("❔").font(.largeTitle)
+                    
                 }
+                .opacity(isFaceUp ? 1 : 0)
+                base.fill().opacity(isFaceUp ?  0 : 1)
             }
-            
             .onTapGesture {
                 isFaceUp.toggle()
             }
