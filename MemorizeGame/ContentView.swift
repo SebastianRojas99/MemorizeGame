@@ -29,7 +29,7 @@ struct ContentView: View {
                     .aspectRatio(2/3,contentMode: .fit)
             }
         }.padding()
-        .foregroundStyle(Color.purple)
+        .foregroundStyle(Color.red)
     }
     
     var cardsCountHelpers:some View{
