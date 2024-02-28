@@ -8,23 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var emojisArray: Array<String> = ["🐍","🐍","🦈","🦈","🐊","🐊","🦫","🦫",]
-    @State var cardCount:Int = 4
+     var emojisArray: Array<String> = ["🐍","🐍","🦈","🦈","🐊","🐊","🦫","🦫",]
+    
     var body: some View {
-        
-        VStack{
-            cardsCountHelpers
-            Spacer()
+
             ScrollView{
                 cards
-            }
-            
-        }
+            }.padding()
     }
     
     var cards:some View{
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 120))]) {
-            ForEach(0..<cardCount,id: \.self){index in
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 85))]) {
+            ForEach(emojisArray.indices,id: \.self){index in
                 CardView(content:emojisArray[index])
                     .aspectRatio(2/3,contentMode: .fit)
             }
@@ -32,32 +27,7 @@ struct ContentView: View {
         .foregroundStyle(Color.red)
     }
     
-    var cardsCountHelpers:some View{
-        HStack{
-            cardAdder
-            Spacer()
-            cardRemover
-        }
-    }
-    
-    func cardCountHelper(by offset:Int,symbol:String) -> some View{
-        Button(action: {
-            cardCount += offset
-        }, label: {
-            Image(systemName: symbol)
-        })
-        .font(.largeTitle).padding()
-        .disabled(cardCount + offset < 1 || cardCount + offset > emojisArray.count )
-    }
-    
-    var cardAdder:some View{
-        return cardCountHelper(by: +1, symbol: "rectangle.stack.badge.plus.fill")
-    }
-    
-    var cardRemover:some View{
-        return cardCountHelper(by: -1, symbol: "rectangle.stack.badge.minus.fill")
-    }
-
+   
     struct CardView:View {
         var content:String
         @State var isFaceUp = true

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		96E4BA472B8F7C3700109CA0 /* MemorizeGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E4BA462B8F7C3700109CA0 /* MemorizeGameModel.swift */; };
+		96E4BA492B8F880600109CA0 /* MemorizeGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E4BA482B8F880600109CA0 /* MemorizeGameViewModel.swift */; };
 		96EE2BCC2B8C0B52009015A9 /* MemorizeGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EE2BCB2B8C0B52009015A9 /* MemorizeGameApp.swift */; };
 		96EE2BCE2B8C0B52009015A9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EE2BCD2B8C0B52009015A9 /* ContentView.swift */; };
 		96EE2BD02B8C0B54009015A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96EE2BCF2B8C0B54009015A9 /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		96E4BA462B8F7C3700109CA0 /* MemorizeGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeGameModel.swift; sourceTree = "<group>"; };
+		96E4BA482B8F880600109CA0 /* MemorizeGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeGameViewModel.swift; sourceTree = "<group>"; };
 		96EE2BC82B8C0B52009015A9 /* MemorizeGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemorizeGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96EE2BCB2B8C0B52009015A9 /* MemorizeGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeGameApp.swift; sourceTree = "<group>"; };
 		96EE2BCD2B8C0B52009015A9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -51,6 +55,8 @@
 		96EE2BCA2B8C0B52009015A9 /* MemorizeGame */ = {
 			isa = PBXGroup;
 			children = (
+				96E4BA462B8F7C3700109CA0 /* MemorizeGameModel.swift */,
+				96E4BA482B8F880600109CA0 /* MemorizeGameViewModel.swift */,
 				96EE2BCB2B8C0B52009015A9 /* MemorizeGameApp.swift */,
 				96EE2BCD2B8C0B52009015A9 /* ContentView.swift */,
 				96EE2BCF2B8C0B54009015A9 /* Assets.xcassets */,
@@ -137,6 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96E4BA492B8F880600109CA0 /* MemorizeGameViewModel.swift in Sources */,
+				96E4BA472B8F7C3700109CA0 /* MemorizeGameModel.swift in Sources */,
 				96EE2BCE2B8C0B52009015A9 /* ContentView.swift in Sources */,
 				96EE2BCC2B8C0B52009015A9 /* MemorizeGameApp.swift in Sources */,
 			);
