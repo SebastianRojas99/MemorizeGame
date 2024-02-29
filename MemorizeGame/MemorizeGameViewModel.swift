@@ -8,8 +8,19 @@
 import SwiftUI
 
 class EmojiMemoryGame{
-    init(EmojiMemoryModel: MemoryGame<String>) {
-        self.EmojiMemoryModel = EmojiMemoryModel
+        
+   private var EmojiMemoryModel:MemoryGame<String> = MemoryGame(numberOfPairsOfCards: 4)
+    
+    var cards:Array<MemoryGame<String>.Card>{
+        return EmojiMemoryModel.cards
     }
-    var EmojiMemoryModel:MemoryGame<String>
+    
+    func choose(_ card:MemoryGame<String>.Card){
+        EmojiMemoryModel.choose(card)
+    }
+    
+    func shuffleTheCards(_ card:MemoryGame<String>.Card){
+        EmojiMemoryModel.shuffleTheCards(card)
+    }
+    
 }

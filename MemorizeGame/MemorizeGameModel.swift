@@ -10,9 +10,22 @@ import Foundation
 
 
 struct MemoryGame<CardContent>{
-    var cards:Array<Card>
+    private(set) var cards:Array<Card>
     
-    func choose(card:Card){
+    init(numberOfPairsOfCards:Int) {
+        cards = []
+        for _ in 0..<numberOfPairsOfCards{
+            cards.append(Card(isFaceUp: false, isMatched: false, content: <#T##CardContent#>))
+            cards.append(Card(isFaceUp: false, isMatched: false, content: <#T##CardContent#>))
+        }
+                    
+    }
+    
+    func choose(_ card:Card){
+        
+    }
+    
+    func shuffleTheCards(_ card:Card){
         
     }
     
@@ -20,5 +33,8 @@ struct MemoryGame<CardContent>{
         var isFaceUp:Bool
         var isMatched:Bool
         var content: CardContent
+    }
+    struct Game{
+        var points:Int
     }
 }
