@@ -14,7 +14,10 @@ class EmojiMemoryGame{
     
     private static func createMemoryGame() -> MemoryGame<String>{
         return MemoryGame(numberOfPairsOfCards: 4) { pairIndex in
-            return emojis[pairIndex]
+            if emojis.indices.contains(pairIndex){
+                return emojis[pairIndex]
+            }
+            return "⁉️"
          }
     }
    
@@ -30,6 +33,10 @@ class EmojiMemoryGame{
     
     func shuffleTheCards(_ card:MemoryGame<String>.Card){
         EmojiMemoryModel.shuffleTheCards(card)
+    }
+    
+    func getPoint(_ game:MemoryGame<Int>.Game){
+        
     }
     
 }
