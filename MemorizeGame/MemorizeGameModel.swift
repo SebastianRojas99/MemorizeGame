@@ -18,6 +18,7 @@ struct MemoryGame<CardContent>{
             let content: CardContent = cardContentFactory(pairIndex)
             cards.append(Card( content: content))
             cards.append(Card( content: content))
+            
 
         }
                     
@@ -29,6 +30,8 @@ struct MemoryGame<CardContent>{
     
     func shuffleTheCards(_ card:Card){
         
+        return
+        
     }
     
     func getPoints(_ game:Game){
@@ -36,7 +39,7 @@ struct MemoryGame<CardContent>{
     }
     
     struct Card{
-        var isFaceUp = false
+        var isFaceUp = true
         var isMatched = false
         let content: CardContent
     }

@@ -19,10 +19,11 @@ struct EmojiMemoryGameView: View {
     }
     
     var cards:some View{
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 85))]) {
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 85),spacing: 0)],spacing:0) {
             ForEach(emojiGame.cards.indices,id: \.self){index in
-                CardView(card: emojiGame.cards[index])
+                CardView(emojiGame.cards[index])
                     .aspectRatio(2/3,contentMode: .fit)
+                    .padding(4)
             }
         }.padding()
         .foregroundStyle(Color.red)
@@ -32,6 +33,9 @@ struct EmojiMemoryGameView: View {
     struct CardView:View {
         let card:MemoryGame<String>.Card
         
+        init(_ card: MemoryGame<String>.Card) {
+            self.card = card
+        }
         
         var body: some View {
             ZStack{
@@ -39,9 +43,11 @@ struct EmojiMemoryGameView: View {
                 Group{
                     base.foregroundStyle(Color.white)
                     base.strokeBorder(lineWidth: 2)
-                    Text(card.content).font(.largeTitle)
+                    Text(card.content)
                         .imageScale(.large)
                         .foregroundStyle(.tint)
+                        .font(.system(size: 200))
+                        .minimumScaleFactor(0.01)
                     
                 }
                 .opacity(card.isFaceUp ? 1 : 0)
