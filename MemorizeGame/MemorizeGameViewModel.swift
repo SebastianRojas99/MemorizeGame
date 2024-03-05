@@ -9,7 +9,7 @@ import SwiftUI
 
 
 
-class EmojiMemoryGame{
+class EmojiMemoryGame:ObservableObject{
    private static let emojis = ["🐍","🐤","🦈","🦅","🐊","🐗","🦫","🐔"]
     
     private static func createMemoryGame() -> MemoryGame<String>{
@@ -21,7 +21,8 @@ class EmojiMemoryGame{
          }
     }
    
-    private var EmojiMemoryModel = createMemoryGame()
+    @Published private var EmojiMemoryModel = createMemoryGame()
+    
     
     var cards:Array<MemoryGame<String>.Card>{
         return EmojiMemoryModel.cards
@@ -31,12 +32,9 @@ class EmojiMemoryGame{
         EmojiMemoryModel.choose(card)
     }
     
-    func shuffleTheCards(_ card:MemoryGame<String>.Card){
-        EmojiMemoryModel.shuffleTheCards(card)
+    func shuffle(){
+        EmojiMemoryModel.shuffle()
     }
     
-    func getPoint(_ game:MemoryGame<Int>.Game){
-        
-    }
     
 }

@@ -21,22 +21,21 @@ struct MemoryGame<CardContent>{
             
 
         }
-                    
+        
+        
+        
     }
+    
     
     func choose(_ card:Card){
         
     }
     
-    func shuffleTheCards(_ card:Card){
-        
-        return
-        
-    }
+  mutating func shuffle(){
+       cards.shuffle()
+   }
     
-    func getPoints(_ game:Game){
-        
-    }
+    
     
     struct Card{
         var isFaceUp = true

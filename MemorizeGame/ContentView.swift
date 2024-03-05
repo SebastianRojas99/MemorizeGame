@@ -9,17 +9,22 @@ import SwiftUI
 
 struct EmojiMemoryGameView: View {
     
-    var emojiGame:EmojiMemoryGame = EmojiMemoryGame()
+  @ObservedObject var emojiGame:EmojiMemoryGame
     
     var body: some View {
-
+        VStack{
             ScrollView{
                 cards
             }.padding()
+            Button("shuffle"){
+                emojiGame.shuffle()
+            }
+        }
+            
     }
     
     var cards:some View{
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 85),spacing: 0)],spacing:0) {
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 120),spacing: 0)],spacing:0) {
             ForEach(emojiGame.cards.indices,id: \.self){index in
                 CardView(emojiGame.cards[index])
                     .aspectRatio(2/3,contentMode: .fit)
@@ -48,6 +53,7 @@ struct EmojiMemoryGameView: View {
                         .foregroundStyle(.tint)
                         .font(.system(size: 200))
                         .minimumScaleFactor(0.01)
+                        .aspectRatio(1, contentMode: .fit)
                     
                 }
                 .opacity(card.isFaceUp ? 1 : 0)
@@ -60,5 +66,5 @@ struct EmojiMemoryGameView: View {
     }
 }
 #Preview {
-    EmojiMemoryGameView()
+    EmojiMemoryGameView(emojiGame: EmojiMemoryGame())
 }
