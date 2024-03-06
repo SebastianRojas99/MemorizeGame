@@ -14,6 +14,7 @@ struct MemoryGame<CardContent>{
     
     init(numberOfPairsOfCards:Int,cardContentFactory:(Int)->CardContent) {
         cards = []
+        
         for pairIndex in 0..<max(2, numberOfPairsOfCards){
             let content: CardContent = cardContentFactory(pairIndex)
             cards.append(Card( content: content))
@@ -22,8 +23,6 @@ struct MemoryGame<CardContent>{
 
         }
         
-        
-        
     }
     
     
@@ -31,8 +30,9 @@ struct MemoryGame<CardContent>{
         
     }
     
-  mutating func shuffle(){
+    mutating func shuffle(){
        cards.shuffle()
+        
    }
     
     
@@ -42,7 +42,5 @@ struct MemoryGame<CardContent>{
         var isMatched = false
         let content: CardContent
     }
-    struct Game{
-        var points:Int
-    }
+    
 }
