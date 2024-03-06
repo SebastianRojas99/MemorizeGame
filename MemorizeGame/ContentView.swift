@@ -15,18 +15,20 @@ struct EmojiMemoryGameView: View {
         VStack{
             ScrollView{
                 cards
+                    .animation(.default, value: emojiGame.cards)
             }.padding()
-            Button("shuffle"){
+            Button("▶️"){
                 emojiGame.shuffle()
-            }
+            }.scaleEffect(2.5)
+                        
         }
             
     }
     
     var cards:some View{
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 120),spacing: 0)],spacing:0) {
-            ForEach(emojiGame.cards.indices,id: \.self){index in
-                CardView(emojiGame.cards[index])
+            ForEach(emojiGame.cards, id:\.id){card in
+                CardView(card)
                     .aspectRatio(2/3,contentMode: .fit)
                     .padding(4)
             }
