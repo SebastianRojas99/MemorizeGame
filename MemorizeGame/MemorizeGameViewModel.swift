@@ -25,7 +25,7 @@ class EmojiMemoryGame:ObservableObject{
     
     
     var cards:Array<MemoryGame<String>.Card>{
-        return EmojiMemoryModel.cards
+        return EmojiMemoryModel.cards 
     }
     
     func choose(_ card:MemoryGame<String>.Card){

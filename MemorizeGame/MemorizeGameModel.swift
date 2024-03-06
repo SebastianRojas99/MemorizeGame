@@ -9,8 +9,8 @@ import Foundation
 
 
 
-struct MemoryGame<CardContent>{
-    private(set) var cards:Array<Card>
+struct MemoryGame<CardContent>{ //tipo generico, recibe cualquier tipo
+    private(set) var cards:Array<Card> // al ser private set se modifica solo dentro del scope de memory game
     
     init(numberOfPairsOfCards:Int,cardContentFactory:(Int)->CardContent) {
         cards = []
@@ -31,6 +31,7 @@ struct MemoryGame<CardContent>{
     }
     
     mutating func shuffle(){
+        
        cards.shuffle()
         
    }
@@ -38,6 +39,7 @@ struct MemoryGame<CardContent>{
     
     
     struct Card{
+        
         var isFaceUp = true
         var isMatched = false
         let content: CardContent
