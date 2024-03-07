@@ -17,8 +17,10 @@ struct EmojiMemoryGameView: View {
                 cards
                     .animation(.default, value: emojiGame.cards)
             }.padding()
-            Button("▶️"){
+            Button(action:{
                 emojiGame.shuffle()
+            }){
+                Image(systemName: "button.programmable").foregroundStyle(Color.purple)
             }.scaleEffect(2.5)
                         
         }
@@ -33,7 +35,7 @@ struct EmojiMemoryGameView: View {
                     .padding(4)
             }
         }.padding()
-        .foregroundStyle(Color.red)
+        .foregroundStyle(Color.purple)
     }
     
    
