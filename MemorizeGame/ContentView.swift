@@ -19,9 +19,10 @@ struct EmojiMemoryGameView: View {
             }.padding()
             Button(action:{
                 emojiGame.shuffle()
+                
             }){
                 Image(systemName: "button.programmable").foregroundStyle(Color.purple)
-            }.scaleEffect(2.5)
+            }.scaleEffect(3.5)
                         
         }
             
