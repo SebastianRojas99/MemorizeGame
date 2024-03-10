@@ -31,9 +31,14 @@ struct EmojiMemoryGameView: View {
     var cards:some View{
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 120),spacing: 0)],spacing:0) {
             ForEach(emojiGame.cards, id:\.id){card in
-                CardView(card)
-                    .aspectRatio(2/3,contentMode: .fit)
-                    .padding(4)
+                VStack(spacing:0){
+                    CardView(card)
+                        .aspectRatio(2/3,contentMode: .fit)
+                        .padding(4)
+                        .onTapGesture{
+                            emojiGame.choose(card)
+                        }
+                }
             }
         }.padding()
         .foregroundStyle(Color.purple)
