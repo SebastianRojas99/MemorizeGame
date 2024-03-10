@@ -31,11 +31,6 @@ struct MemoryGame<CardContent> where CardContent:Equatable{
         cards[chosenIndex].isFaceUp.toggle()
     }
     
-    mutating func shuffle(){
-        
-       cards.shuffle()
-        
-   }
     
     func index(of card:Card) ->Int{
         for index in cards.indices{
@@ -43,8 +38,15 @@ struct MemoryGame<CardContent> where CardContent:Equatable{
                 return index
             }
         }
-        return 0//FIXME
+        return 0//FIXME: bogus
     }
+    
+    mutating func shuffle(){
+        
+       cards.shuffle()
+        
+   }
+   
     
     
     
