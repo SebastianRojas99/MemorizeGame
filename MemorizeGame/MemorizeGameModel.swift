@@ -37,14 +37,18 @@ struct MemoryGame<CardContent> where CardContent:Equatable{
         return 0//FIXME: bogus
     }
     
-    mutating func shuffle(){
+    mutating func shuffle() {
         
-       cards.shuffle()
+        for index in cards.indices {
+                cards[index].isFaceUp = false
+            }
+        cards.shuffle()
+    
         
    }
     struct Card:Equatable,Identifiable,CustomDebugStringConvertible{
         
-        var isFaceUp = true
+        var isFaceUp = false
         var isMatched = false
         let content: CardContent
         var id: String
