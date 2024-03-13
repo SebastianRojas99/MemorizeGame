@@ -26,12 +26,12 @@ struct EmojiMemoryGameView: View {
                     emojiGame.shuffle()
                     
                 }){
-                    Image(systemName: "button.programmable").foregroundStyle(Color.purple)
+                    Image(systemName: "button.programmable").foregroundStyle(emojiGame.getCardColor())
                 }.scaleEffect(3.5)
                 Button(action:{
                     emojiGame.changeEmoji()
                 }){
-                    Image(systemName: "arrowshape.up.circle.fill").foregroundStyle(Color.purple)
+                    Image(systemName: "arrowshape.up.circle.fill").foregroundStyle(emojiGame.getCardColor())
                 }.scaleEffect(3.5)
             }
            
