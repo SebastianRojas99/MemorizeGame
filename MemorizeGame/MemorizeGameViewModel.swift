@@ -42,5 +42,21 @@ class EmojiMemoryGame: ObservableObject {
             }
             return "⁉️"
         }
+        
     }
+    var currentlyEmojiIndex: Int {
+            return self.currentEmojiIndex
+        }
+     func getCardColor() -> Color {
+            switch currentlyEmojiIndex {
+            case 0:
+                return Color.orange
+            case 1:
+                return Color.red
+            case 2:
+                return Color.yellow
+            default:
+                return Color.white
+            }
+        }
 }

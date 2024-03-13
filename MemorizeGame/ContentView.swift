@@ -51,7 +51,7 @@ struct EmojiMemoryGameView: View {
                         }
             }
         }.padding()
-        .foregroundStyle(Color.purple)
+            .foregroundStyle(emojiGame.getCardColor())
     }
     
    
