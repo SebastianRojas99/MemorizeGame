@@ -15,7 +15,7 @@ struct EmojiMemoryGameView: View {
         Text("Memorize!")
             .font(.largeTitle)
             .bold()
-            .foregroundStyle(Color.secondary)
+            .foregroundStyle(emojiGame.titlesColorChanging())
         VStack{
             ScrollView{
                 cards

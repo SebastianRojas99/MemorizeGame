@@ -59,4 +59,18 @@ class EmojiMemoryGame: ObservableObject {
                 return Color.white
             }
         }
+    
+    func titlesColorChanging() ->Color{
+        switch currentEmojiIndex{
+        case 0:
+            return Color.blue
+        case 1:
+            return Color.green
+        case 2:
+            return Color.gray
+        default:
+            return Color.black
+        
+        }
+    }
 }
