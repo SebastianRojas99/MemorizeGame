@@ -12,17 +12,29 @@ struct EmojiMemoryGameView: View {
   @ObservedObject var emojiGame:EmojiMemoryGame
     
     var body: some View {
+        Text("Memorize!")
+            .font(.largeTitle)
+            .bold()
+            .foregroundStyle(Color.secondary)
         VStack{
             ScrollView{
                 cards
                     .animation(.default, value: emojiGame.cards)
             }.padding()
-            Button(action:{
-                emojiGame.shuffle()
-                
-            }){
-                Image(systemName: "button.programmable").foregroundStyle(Color.purple)
-            }.scaleEffect(3.5)
+            HStack(spacing:50){
+                Button(action:{
+                    emojiGame.shuffle()
+                    
+                }){
+                    Image(systemName: "button.programmable").foregroundStyle(Color.purple)
+                }.scaleEffect(3.5)
+                Button(action:{
+                    emojiGame.changeEmoji()
+                }){
+                    Image(systemName: "arrowshape.up.circle.fill").foregroundStyle(Color.purple)
+                }.scaleEffect(3.5)
+            }
+           
                         
         }
             

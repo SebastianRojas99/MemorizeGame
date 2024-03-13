@@ -27,6 +27,10 @@ struct MemoryGame<CardContent> where CardContent:Equatable{
         
     }
     
+    func match(_ card:Card){
+        
+    }
+    
     func index(of card:Card) ->Int{
         for index in cards.indices{
             if cards[index].id == card.id{
