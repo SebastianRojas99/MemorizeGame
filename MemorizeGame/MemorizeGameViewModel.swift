@@ -8,8 +8,9 @@ import SwiftUI
 
 class EmojiMemoryGame: ObservableObject {
     private static let emojis = [["🐍","🐤","🦈","🦅","🐊","🐗","🦫","🐔"],["🛳️","🚅","🚁","🚗","🚜"],["😋","🥲","😚","🥰","🤓"]]
+   
     private var currentEmojiIndex = 0
-    
+    private static var foo = Int.random(in: 4...6)
     @Published private var emojiMemoryModel: MemoryGame<String>
     
     init() {
@@ -24,6 +25,8 @@ class EmojiMemoryGame: ObservableObject {
         emojiMemoryModel.choose(card)
     }
     
+    
+    
     func changeEmoji() {
         currentEmojiIndex = (currentEmojiIndex + 1) % EmojiMemoryGame.emojis.count
         emojiMemoryModel = EmojiMemoryGame.createMemoryGame(op: currentEmojiIndex)
@@ -31,11 +34,14 @@ class EmojiMemoryGame: ObservableObject {
     
     func shuffle() {
         emojiMemoryModel.shuffle()
+        
         print(cards)
     }
     
+   
+    
     private static func createMemoryGame(op: Int) -> MemoryGame<String> {
-        return MemoryGame(numberOfPairsOfCards: 3) { pairIndex in
+        return MemoryGame(numberOfPairsOfCards: foo) { pairIndex in
             let emojis = self.emojis[op]
             if emojis.indices.contains(pairIndex) {
                 return emojis[pairIndex]
