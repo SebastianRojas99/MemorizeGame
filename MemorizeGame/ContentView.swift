@@ -32,7 +32,7 @@ struct EmojiMemoryGameView: View {
                 Button(action:{
                     emojiGame.changeEmoji()
                 }){
-                    Image(systemName: "arrowshape.up.circle.fill").foregroundStyle(emojiGame.getCardColor())
+                    Image(systemName: emojiGame.iconsForChanges()).foregroundStyle(emojiGame.getCardColor())
                 }.scaleEffect(3.5)
             }
            

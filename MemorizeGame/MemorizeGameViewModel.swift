@@ -8,6 +8,11 @@ import SwiftUI
 
 class EmojiMemoryGame: ObservableObject {
     private static let emojis = [["🐍","🐤","🦈","🦅","🐊","🐗","🦫","🐔"],["🛳️","🚅","🚁","🚗","🚜"],["😋","🥲","😚","🥰","🤓"]]
+    
+    var currentlyEmojiIndex: Int {
+            return self.currentEmojiIndex
+        }
+    
    
     private var currentEmojiIndex = 0
     private static var foo = Int.random(in: 2...6)
@@ -25,20 +30,6 @@ class EmojiMemoryGame: ObservableObject {
         emojiMemoryModel.choose(card)
     }
     
-    func getMinimumWidth() -> CGFloat {
-        switch EmojiMemoryGame.foo {
-        case 2:
-            return 120
-        case 3...4:
-            return 100
-        case 5...8:
-            return 80
-        case 9...16:
-            return 60
-        default:
-            return 40
-        }
-    }
     
     
     
@@ -66,9 +57,23 @@ class EmojiMemoryGame: ObservableObject {
         }
         
     }
-    var currentlyEmojiIndex: Int {
-            return self.currentEmojiIndex
+    
+    
+    func getMinimumWidth() -> CGFloat {
+        switch EmojiMemoryGame.foo {
+        case 2:
+            return 120
+        case 3...4:
+            return 100
+        case 5...8:
+            return 80
+        case 9...16:
+            return 60
+        default:
+            return 40
         }
+    }
+    
      func getCardColor() -> Color {
             switch currentlyEmojiIndex {
             case 0:
@@ -93,6 +98,19 @@ class EmojiMemoryGame: ObservableObject {
         default:
             return Color.black
         
+        }
+        
+    }
+    func iconsForChanges() -> String{
+        switch currentEmojiIndex{
+        case 0:
+            return "dog.fill"
+        case 1:
+            return "car.fill"
+        case 2:
+            return "person.fill"
+        default:
+            return "person.fill.questionmark"
         }
     }
 }
