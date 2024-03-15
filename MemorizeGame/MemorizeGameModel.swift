@@ -27,6 +27,8 @@ struct MemoryGame<CardContent> where CardContent:Equatable{
         
     }
     
+    
+    
     func match(_ card:Card){
         
     }

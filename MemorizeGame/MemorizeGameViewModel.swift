@@ -25,9 +25,21 @@ class EmojiMemoryGame: ObservableObject {
         emojiMemoryModel.choose(card)
     }
     
-    func getQuantityOfCards()->Int{
-        return EmojiMemoryGame.foo
+    func getMinimumWidth() -> CGFloat {
+        switch EmojiMemoryGame.foo {
+        case 2:
+            return 120
+        case 3...4:
+            return 100
+        case 5...8:
+            return 80
+        case 9...16:
+            return 60
+        default:
+            return 40
+        }
     }
+    
     
     
     
