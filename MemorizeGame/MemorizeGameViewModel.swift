@@ -44,7 +44,6 @@ class EmojiMemoryGame: ObservableObject {
         
         print(cards)
     }
-    
    
     
     private static func createMemoryGame(op: Int) -> MemoryGame<String> {
@@ -55,7 +54,6 @@ class EmojiMemoryGame: ObservableObject {
             }
             return "⁉️"
         }
-        
     }
     
     
@@ -71,46 +69,6 @@ class EmojiMemoryGame: ObservableObject {
             return 60
         default:
             return 40
-        }
-    }
-    
-     func getCardColor() -> Color {
-            switch currentlyEmojiIndex {
-            case 0:
-                return Color.orange
-            case 1:
-                return Color.red
-            case 2:
-                return Color.yellow
-            default:
-                return Color.white
-            }
-        }
-    
-    func titlesColorChanging() ->Color{
-        switch currentEmojiIndex{
-        case 0:
-            return Color.blue
-        case 1:
-            return Color.green
-        case 2:
-            return Color.gray
-        default:
-            return Color.black
-        
-        }
-        
-    }
-    func iconsForChanges() -> String{
-        switch currentEmojiIndex{
-        case 0:
-            return "dog.fill"
-        case 1:
-            return "car.fill"
-        case 2:
-            return "person.fill"
-        default:
-            return "person.fill.questionmark"
         }
     }
 }

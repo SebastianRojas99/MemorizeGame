@@ -15,7 +15,7 @@ struct EmojiMemoryGameView: View {
         Text("Memorize!")
             .font(.largeTitle)
             .bold()
-            .foregroundStyle(emojiGame.titlesColorChanging())
+            .foregroundStyle(Color.primary)
             
         VStack{
             ScrollView{
@@ -27,13 +27,9 @@ struct EmojiMemoryGameView: View {
                     emojiGame.shuffle()
                     
                 }){
-                    Image(systemName: "button.programmable").foregroundStyle(emojiGame.getCardColor())
+                    Image(systemName: "button.programmable").foregroundStyle(Color.black)
                 }.scaleEffect(3.5)
-                Button(action:{
-                    emojiGame.changeEmoji()
-                }){
-                    Image(systemName: emojiGame.iconsForChanges()).foregroundStyle(emojiGame.getCardColor())
-                }.scaleEffect(3.5)
+                
             }
            
                         
@@ -52,7 +48,7 @@ struct EmojiMemoryGameView: View {
                         }
             }
         }.padding()
-            .foregroundStyle(emojiGame.getCardColor())
+            .foregroundStyle(Color.purple)
     }
     
    
