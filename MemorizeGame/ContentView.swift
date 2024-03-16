@@ -30,6 +30,14 @@ struct EmojiMemoryGameView: View {
                     Image(systemName: "button.programmable").foregroundStyle(Color.black)
                 }.scaleEffect(3.5)
                 
+                Button(action:{
+                    emojiGame.newGame() 
+                }){
+                    Text("New Game!").foregroundStyle(Color.black)
+                }.scaleEffect(1)
+                
+                
+                
             }
            
                         

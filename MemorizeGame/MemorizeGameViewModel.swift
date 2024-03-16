@@ -9,11 +9,7 @@ import SwiftUI
 class EmojiMemoryGame: ObservableObject {
     private static let emojis = [["🐍","🐤","🦈","🦅","🐊","🐗","🦫","🐔"],["🛳️","🚅","🚁","🚗","🚜"],["😋","🥲","😚","🥰","🤓"]]
     
-    var currentlyEmojiIndex: Int {
-            return self.currentEmojiIndex
-        }
     
-   
     private var currentEmojiIndex = 0
     private static var foo = Int.random(in: 2...6)
     @Published private var emojiMemoryModel: MemoryGame<String>
@@ -30,10 +26,6 @@ class EmojiMemoryGame: ObservableObject {
         emojiMemoryModel.choose(card)
     }
     
-    
-    
-    
-    
     func changeEmoji() {
         currentEmojiIndex = (currentEmojiIndex + 1) % EmojiMemoryGame.emojis.count
         emojiMemoryModel = EmojiMemoryGame.createMemoryGame(op: currentEmojiIndex)
@@ -41,10 +33,21 @@ class EmojiMemoryGame: ObservableObject {
     
     func shuffle() {
         emojiMemoryModel.shuffle()
-        
         print(cards)
     }
-   
+    
+
+    func newGame() {
+        let numberOfPairs = Int.random(in: 2...EmojiMemoryGame.foo)
+        emojiMemoryModel = MemoryGame(numberOfPairsOfCards: numberOfPairs) { pairIndex in
+            let emojis = EmojiMemoryGame.emojis[currentEmojiIndex]
+            if emojis.indices.contains(pairIndex) {
+                
+                return emojis[pairIndex]
+            }
+            return "⁉️"
+        }
+    }
     
     private static func createMemoryGame(op: Int) -> MemoryGame<String> {
         return MemoryGame(numberOfPairsOfCards: foo) { pairIndex in
@@ -55,7 +58,6 @@ class EmojiMemoryGame: ObservableObject {
             return "⁉️"
         }
     }
-    
     
     func getMinimumWidth() -> CGFloat {
         switch EmojiMemoryGame.foo {
