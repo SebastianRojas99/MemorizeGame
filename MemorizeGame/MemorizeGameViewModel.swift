@@ -36,7 +36,7 @@ class EmojiMemoryGame: ObservableObject {
         print(cards)
     }
     
-
+    
     func newGame() {
         let numberOfPairs = Int.random(in: 2...EmojiMemoryGame.foo)
         emojiMemoryModel = MemoryGame(numberOfPairsOfCards: numberOfPairs) { pairIndex in

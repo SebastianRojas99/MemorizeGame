@@ -9,14 +9,14 @@ import SwiftUI
 
 struct EmojiMemoryGameView: View {
     
-  @ObservedObject var emojiGame:EmojiMemoryGame
+    @ObservedObject var emojiGame:EmojiMemoryGame
     
     var body: some View {
         Text("Memorize!")
             .font(.largeTitle)
             .bold()
             .foregroundStyle(Color.primary)
-            
+        
         VStack{
             ScrollView{
                 cards
@@ -39,27 +39,27 @@ struct EmojiMemoryGameView: View {
                 
                 
             }
-           
-                        
-        }
             
+            
+        }
+        
     }
     
     var cards:some View{
         LazyVGrid(columns: [GridItem(.adaptive(minimum: emojiGame.getMinimumWidth()),spacing: 0)],spacing:0) {
             ForEach(emojiGame.cards) {card in
-                    CardView(card)
-                        .aspectRatio(2/3,contentMode: .fit)
-                        .padding(4)
-                        .onTapGesture{
-                            emojiGame.choose(card)
-                        }
+                CardView(card)
+                    .aspectRatio(2/3,contentMode: .fit)
+                    .padding(4)
+                    .onTapGesture{
+                        emojiGame.choose(card)
+                    }
             }
         }.padding()
             .foregroundStyle(Color.purple)
     }
     
-   
+    
     struct CardView:View {
         let card:MemoryGame<String>.Card
         
