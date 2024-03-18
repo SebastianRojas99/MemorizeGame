@@ -31,7 +31,7 @@ struct EmojiMemoryGameView: View {
                 }.scaleEffect(3.5)
                 
                 Button(action:{
-                    emojiGame.newGame() 
+                    emojiGame.newGame()
                 }){
                     Text("New Game!").foregroundStyle(Color.black)
                 }.scaleEffect(1)
@@ -84,6 +84,7 @@ struct EmojiMemoryGameView: View {
                 .opacity(card.isFaceUp ? 1 : 0)
                 base.fill().opacity(card.isFaceUp ?  0 : 1)
             }
+            .opacity(card.isFaceUp || !card.isMatched ? 1 : 0)
             
         }
     }
