@@ -8,7 +8,7 @@ import SwiftUI
 
 class EmojiMemoryGame: ObservableObject {
     
-     var currentTheme:MemoryGame<String>.Theme = .green
+    var currentTheme:MemoryGame<String>.Theme = .green
     
     private var currentEmojiIndex = 0
     private static var foo = Int.random(in: 2...6)
@@ -30,7 +30,7 @@ class EmojiMemoryGame: ObservableObject {
     
     func changeTheme() {
         currentEmojiIndex = (currentEmojiIndex + 1) % MemoryGame<String>.Theme.allCases.count
-        currentTheme =        MemoryGame<String>.Theme.allCases[currentEmojiIndex]
+        currentTheme = MemoryGame<String>.Theme.allCases[currentEmojiIndex]
         emojiMemoryModel = EmojiMemoryGame.createMemoryGame(with: currentTheme)
     }
 
@@ -40,18 +40,6 @@ class EmojiMemoryGame: ObservableObject {
         print(cards)
     }
     
-    
-    func newGame() {
-        let numberOfPairs = Int.random(in: 2...EmojiMemoryGame.foo)
-        emojiMemoryModel = MemoryGame(numberOfPairsOfCards: numberOfPairs) { pairIndex in
-            let emojis = currentTheme.emojis
-            if emojis.indices.contains(pairIndex) {
-                
-                return emojis[pairIndex]
-            }
-            return "⁉️"
-        }
-    }
     
     private static func createMemoryGame(with theme:MemoryGame<String>.Theme) -> MemoryGame<String> {
         return MemoryGame(numberOfPairsOfCards: foo) { pairIndex in

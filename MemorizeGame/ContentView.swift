@@ -36,23 +36,14 @@ struct EmojiMemoryGameView: View {
                 .padding()
                 
                 Button(action: {
-                    emojiGame.newGame()
+                    emojiGame.changeTheme()
                 }) {
                     Text("New Game!")
                         .font(.title3)
                         .foregroundColor(Color.black)
                         .padding()
                 }
-                Button(action: {
-                                    emojiGame.changeTheme()
-                                }) {
-                                    Image(systemName: "paintpalette")
-                                        .font(.title)
-                                        .foregroundColor(.black)
-                                }
-                                .padding()
             }
-            .padding()
         }
     }
     
