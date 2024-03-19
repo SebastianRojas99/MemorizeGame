@@ -71,6 +71,38 @@ struct MemoryGame<CardContent> where CardContent:Equatable{
             "\(id):\(content) \(isFaceUp ? "up":"down") \(isMatched ? "match" : "")"
         }
     }
+    
+    enum Theme {
+        case green
+        case purple
+        case red
+        
+        
+        
+        static var allCases: [Theme] {
+                return [.green, .purple, .red]
+            }
+        
+        var title:String{
+            switch self{
+            case .green: return "Green Memorize"
+            case .purple: return "Purple Memorize"
+            case .red: return "Red Memorize"
+            }
+        }
+        
+        var emojis: [String] {
+            switch self {
+            case .green:
+                return ["🌳", "🍏", "🥦", "🦠", "🐢", "🦜", "🍀", "🥑", "🍐", "🦖"]
+            case .purple:
+                return ["🍇", "🔮", "💜", "🍆", "🌌", "🦄", "👾", "🍇", "🎆", "👚"]
+            case .red:
+                return ["🍎", "🌹", "🍓", "🚗", "🎈", "🔥", "❤️", "🦀", "🍒", "🍄"]
+            }
+        }
+    }
+    
 }
 
 extension Array{

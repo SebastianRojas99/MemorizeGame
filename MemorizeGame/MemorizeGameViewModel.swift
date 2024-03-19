@@ -7,15 +7,15 @@
 import SwiftUI
 
 class EmojiMemoryGame: ObservableObject {
-    private static let emojis = [["🐍","🐤","🦈","🦅","🐊","🐗","🦫","🐔"],["🛳️","🚅","🚁","🚗","🚜"],["😋","🥲","😚","🥰","🤓"]]
     
+     var currentTheme:MemoryGame<String>.Theme = .green
     
     private var currentEmojiIndex = 0
     private static var foo = Int.random(in: 2...6)
     @Published private var emojiMemoryModel: MemoryGame<String>
     
     init() {
-        emojiMemoryModel = EmojiMemoryGame.createMemoryGame(op: currentEmojiIndex)
+        emojiMemoryModel = EmojiMemoryGame.createMemoryGame(with: currentTheme)
     }
     
     var cards: Array<MemoryGame<String>.Card> {
@@ -24,11 +24,13 @@ class EmojiMemoryGame: ObservableObject {
     
     func choose(_ card: MemoryGame<String>.Card) {
         emojiMemoryModel.choose(card)
+        
+        
     }
     
-    func changeEmoji() {
-        currentEmojiIndex = (currentEmojiIndex + 1) % EmojiMemoryGame.emojis.count
-        emojiMemoryModel = EmojiMemoryGame.createMemoryGame(op: currentEmojiIndex)
+    func changeTheme() {
+        currentEmojiIndex = (currentEmojiIndex + 1) % MemoryGame<String>.Theme.allCases.count
+        emojiMemoryModel = EmojiMemoryGame.createMemoryGame(with: currentTheme)
     }
     
     func shuffle() {
@@ -40,7 +42,7 @@ class EmojiMemoryGame: ObservableObject {
     func newGame() {
         let numberOfPairs = Int.random(in: 2...EmojiMemoryGame.foo)
         emojiMemoryModel = MemoryGame(numberOfPairsOfCards: numberOfPairs) { pairIndex in
-            let emojis = EmojiMemoryGame.emojis[currentEmojiIndex]
+            let emojis = currentTheme.emojis
             if emojis.indices.contains(pairIndex) {
                 
                 return emojis[pairIndex]
@@ -49,9 +51,9 @@ class EmojiMemoryGame: ObservableObject {
         }
     }
     
-    private static func createMemoryGame(op: Int) -> MemoryGame<String> {
+    private static func createMemoryGame(with theme:MemoryGame<String>.Theme) -> MemoryGame<String> {
         return MemoryGame(numberOfPairsOfCards: foo) { pairIndex in
-            let emojis = self.emojis[op]
+            let emojis = theme.emojis
             if emojis.indices.contains(pairIndex) {
                 return emojis[pairIndex]
             }
@@ -71,6 +73,16 @@ class EmojiMemoryGame: ObservableObject {
             return 60
         default:
             return 40
+        }
+    }
+}
+
+extension MemoryGame<String>.Theme{
+    var color:Color{
+        switch self{
+        case .green: return Color.green
+        case .purple: return Color.purple
+        case .red: return Color.red
         }
     }
 }

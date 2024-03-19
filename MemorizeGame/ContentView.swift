@@ -9,86 +9,97 @@ import SwiftUI
 
 struct EmojiMemoryGameView: View {
     
-    @ObservedObject var emojiGame:EmojiMemoryGame
+    @ObservedObject var emojiGame: EmojiMemoryGame
     
     var body: some View {
-        Text("Memorize!")
-            .font(.largeTitle)
-            .bold()
-            .foregroundStyle(Color.primary)
-        
-        VStack{
-            ScrollView{
+        VStack {
+            Text(emojiGame.currentTheme.title)
+                .font(.largeTitle)
+                .bold()
+                .foregroundColor(Color.primary)
+                .padding()
+            
+            ScrollView {
                 cards
+                    .padding()
                     .animation(.default, value: emojiGame.cards)
-            }.padding()
-            HStack(spacing:50){
-                Button(action:{
-                    emojiGame.shuffle()
-                    
-                }){
-                    Image(systemName: "button.programmable").foregroundStyle(Color.black)
-                }.scaleEffect(3.5)
-                
-                Button(action:{
-                    emojiGame.newGame()
-                }){
-                    Text("New Game!").foregroundStyle(Color.black)
-                }.scaleEffect(1)
-                
-                
-                
             }
             
-            
+            HStack(spacing: 50) {
+                Button(action: {
+                    emojiGame.shuffle()
+                }) {
+                    Image(systemName: "shuffle")
+                        .font(.title)
+                        .foregroundColor(Color.black)
+                }
+                .padding()
+                
+                Button(action: {
+                    emojiGame.newGame()
+                }) {
+                    Text("New Game!")
+                        .font(.title3)
+                        .foregroundColor(Color.black)
+                        .padding()
+                }
+                Button(action: {
+                                    emojiGame.changeTheme()
+                                }) {
+                                    Image(systemName: "paintpalette")
+                                        .font(.title)
+                                        .foregroundColor(.black)
+                                }
+                                .padding()
+            }
+            .padding()
         }
-        
     }
     
-    var cards:some View{
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: emojiGame.getMinimumWidth()),spacing: 0)],spacing:0) {
-            ForEach(emojiGame.cards) {card in
-                CardView(card)
-                    .aspectRatio(2/3,contentMode: .fit)
+    var cards: some View {
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: emojiGame.getMinimumWidth()), spacing: 0)], spacing: 0) {
+            ForEach(emojiGame.cards) { card in
+                CardView(card: card)
+                    .aspectRatio(2/3, contentMode: .fit)
                     .padding(4)
-                    .onTapGesture{
+                    .onTapGesture {
                         emojiGame.choose(card)
                     }
             }
-        }.padding()
-            .foregroundStyle(Color.purple)
+        }
+        .padding()
+        .foregroundColor(emojiGame.currentTheme.color)
     }
     
-    
-    struct CardView:View {
-        let card:MemoryGame<String>.Card
-        
-        init(_ card: MemoryGame<String>.Card) {
-            self.card = card
-        }
+    struct CardView: View {
+        let card: MemoryGame<String>.Card
         
         var body: some View {
-            ZStack{
-                let base = RoundedRectangle(cornerRadius: 12)
-                Group{
-                    base.foregroundStyle(Color.white)
-                    base.strokeBorder(lineWidth: 2)
-                    Text(card.content)
-                        .imageScale(.large)
-                        .foregroundStyle(.tint)
-                        .font(.system(size: 200))
-                        .minimumScaleFactor(0.01)
-                        .aspectRatio(1, contentMode: .fit)
-                    
-                }
-                .opacity(card.isFaceUp ? 1 : 0)
-                base.fill().opacity(card.isFaceUp ?  0 : 1)
+            ZStack {
+                RoundedRectangle(cornerRadius: 12)
+                    .foregroundColor(Color.white)
+                    .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(lineWidth: 2))
+                    .opacity(card.isFaceUp ? 1 : 0)
+                
+                RoundedRectangle(cornerRadius: 12)
+                    .fill()
+                    .opacity(card.isFaceUp ? 0 : 1)
+                
+                Text(card.content)
+                    .font(.system(size: 80))
+                    .minimumScaleFactor(0.01)
+                    .aspectRatio(contentMode: .fit)
+                    .padding(24)
+                    .foregroundColor(.blue)
+                    .opacity(card.isFaceUp ? 1 : 0)
             }
             .opacity(card.isFaceUp || !card.isMatched ? 1 : 0)
-            
         }
     }
 }
-#Preview {
-    EmojiMemoryGameView(emojiGame: EmojiMemoryGame())
+
+struct EmojiMemoryGameView_Previews: PreviewProvider {
+    static var previews: some View {
+        EmojiMemoryGameView(emojiGame: EmojiMemoryGame())
+    }
 }
