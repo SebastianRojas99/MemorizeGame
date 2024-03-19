@@ -30,8 +30,10 @@ class EmojiMemoryGame: ObservableObject {
     
     func changeTheme() {
         currentEmojiIndex = (currentEmojiIndex + 1) % MemoryGame<String>.Theme.allCases.count
+        currentTheme =        MemoryGame<String>.Theme.allCases[currentEmojiIndex]
         emojiMemoryModel = EmojiMemoryGame.createMemoryGame(with: currentTheme)
     }
+
     
     func shuffle() {
         emojiMemoryModel.shuffle()
