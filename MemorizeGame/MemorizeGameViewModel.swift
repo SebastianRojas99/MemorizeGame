@@ -11,7 +11,7 @@ class EmojiMemoryGame: ObservableObject {
     var currentTheme:Theme = .green
     
     private var currentEmojiIndex = 0
-    private static var foo = Int.random(in: 2...6)
+    private static var foo = Int.random(in: 2...11)
     @Published private var emojiMemoryModel: MemoryGame<String>
     
     init() {
@@ -46,8 +46,10 @@ class EmojiMemoryGame: ObservableObject {
             let emojis = theme.emojis
             if emojis.indices.contains(pairIndex) {
                 return emojis[pairIndex]
+            }else{
+                return emojis[Int.random(in: 1...emojis.count)]
             }
-            return "⁉️"
+            
         }
     }
     
@@ -114,8 +116,10 @@ class EmojiMemoryGame: ObservableObject {
             case .orange: return Color.orange
             }
         }
+        
     }
 
 }
+
 
 
