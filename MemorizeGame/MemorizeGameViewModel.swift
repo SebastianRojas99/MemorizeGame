@@ -8,14 +8,14 @@ import SwiftUI
 
 class EmojiMemoryGame: ObservableObject {
     
-    var currentTheme:MemoryGame<String>.Theme = .green
+    var currentTheme:Theme = .green
     
     private var currentEmojiIndex = 0
     private static var foo = Int.random(in: 2...6)
     @Published private var emojiMemoryModel: MemoryGame<String>
     
     init() {
-        emojiMemoryModel = EmojiMemoryGame.createMemoryGame(with: currentTheme)
+        emojiMemoryModel = EmojiMemoryGame.createMemoryGame(theme: currentTheme)
     }
     
     var cards: Array<MemoryGame<String>.Card> {
@@ -29,9 +29,9 @@ class EmojiMemoryGame: ObservableObject {
     }
     
     func changeTheme() {
-        currentEmojiIndex = (currentEmojiIndex + 1) % MemoryGame<String>.Theme.allCases.count
-        currentTheme = MemoryGame<String>.Theme.allCases[currentEmojiIndex]
-        emojiMemoryModel = EmojiMemoryGame.createMemoryGame(with: currentTheme)
+        currentEmojiIndex = (currentEmojiIndex + 1) % Theme.allCases.count
+        currentTheme = Theme.allCases[currentEmojiIndex]
+        emojiMemoryModel = EmojiMemoryGame.createMemoryGame(theme: currentTheme)
     }
 
     
@@ -41,7 +41,7 @@ class EmojiMemoryGame: ObservableObject {
     }
     
     
-    private static func createMemoryGame(with theme:MemoryGame<String>.Theme) -> MemoryGame<String> {
+    private static func createMemoryGame(theme:Theme) -> MemoryGame<String> {
         return MemoryGame(numberOfPairsOfCards: foo) { pairIndex in
             let emojis = theme.emojis
             if emojis.indices.contains(pairIndex) {
@@ -65,14 +65,57 @@ class EmojiMemoryGame: ObservableObject {
             return 40
         }
     }
-}
-
-extension MemoryGame<String>.Theme{
-    var color:Color{
-        switch self{
-        case .green: return Color.green
-        case .purple: return Color.purple
-        case .red: return Color.red
+    enum Theme {
+        case green
+        case purple
+        case red
+        case yellow
+        case blue
+        case orange
+        
+        static var allCases: [Theme] {
+            return [.green, .purple, .red, .yellow, .blue, .orange]
+        }
+        
+        var title: String {
+            switch self {
+            case .green: return "Green Memorize"
+            case .purple: return "Purple Memorize"
+            case .red: return "Red Memorize"
+            case .yellow: return "Yellow Memorize"
+            case .blue: return "Blue Memorize"
+            case .orange: return "Orange Memorize"
+            }
+        }
+        
+        var emojis: [String] {
+            switch self {
+            case .green:
+                return ["🌳", "🍏", "🥦", "🦠", "🐢", "🦜", "🍀", "🥑", "🍐", "🦖"]
+            case .purple:
+                return ["🍇", "🔮", "💜", "🍆", "🌌", "🦄", "👾", "🍇", "🎆", "👚"]
+            case .red:
+                return ["🍎", "🌹", "🍓", "🚗", "🎈", "🔥", "❤️", "🦀", "🍒", "🍄"]
+            case .yellow:
+                return ["🌻", "⭐", "🐥", "🍋", "🌟", "🌞", "🏵️", "📒", "🧀", "🟡"]
+            case .blue:
+                return ["💧", "📘", "🐳", "🌀", "🦋", "🌊", "🔵", "🌏", "🔷", "🦕"]
+            case .orange:
+                return ["🍊", "🎃", "🔥", "🌅", "🦊", "📙", "🧡", "🍑", "🥕", "🦁"]
+            }
+        }
+        var color:Color{
+            switch self{
+            case .green: return Color.green
+            case .purple: return Color.purple
+            case .red: return Color.red
+            case .yellow: return Color.yellow
+            case .blue: return Color.blue
+            case .orange: return Color.orange
+            }
         }
     }
+
 }
+
+
