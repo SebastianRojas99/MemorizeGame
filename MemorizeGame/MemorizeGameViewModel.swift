@@ -11,11 +11,12 @@ class EmojiMemoryGame: ObservableObject {
     var currentTheme:Theme = .green
     
     private var currentEmojiIndex = 0
-    private static var foo = Int.random(in: 2...11)
+    private static let foo = Int.random(in: 2...11)
     @Published private var emojiMemoryModel: MemoryGame<String>
     
+    
     init() {
-        emojiMemoryModel = EmojiMemoryGame.createMemoryGame(theme: currentTheme)
+        emojiMemoryModel = EmojiMemoryGame.createMemoryGame(theme: currentTheme,isFoo: EmojiMemoryGame.foo)
     }
     
     var cards: Array<MemoryGame<String>.Card> {
@@ -31,7 +32,7 @@ class EmojiMemoryGame: ObservableObject {
     func changeTheme() {
         currentEmojiIndex = (currentEmojiIndex + 1) % Theme.allCases.count
         currentTheme = Theme.allCases[currentEmojiIndex]
-        emojiMemoryModel = EmojiMemoryGame.createMemoryGame(theme: currentTheme)
+        emojiMemoryModel = EmojiMemoryGame.createMemoryGame(theme: currentTheme,isFoo: EmojiMemoryGame.foo)
     }
 
     
@@ -41,8 +42,9 @@ class EmojiMemoryGame: ObservableObject {
     }
     
     
-    private static func createMemoryGame(theme:Theme) -> MemoryGame<String> {
-        return MemoryGame(numberOfPairsOfCards: foo) { pairIndex in
+    private static func createMemoryGame(theme:Theme,isFoo:Int) -> MemoryGame<String> {
+        let isFoo = EmojiMemoryGame.foo
+        return MemoryGame(numberOfPairsOfCards: isFoo) { pairIndex in
             let emojis = theme.emojis
             if emojis.indices.contains(pairIndex) {
                 return emojis[pairIndex]

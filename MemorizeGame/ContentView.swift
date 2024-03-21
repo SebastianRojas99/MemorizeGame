@@ -26,18 +26,12 @@ struct EmojiMemoryGameView: View {
             }
             
             HStack(spacing: 50) {
-                Button(action: {
-                    emojiGame.shuffle()
-                }) {
-                    Image(systemName: "shuffle")
-                        .font(.title)
-                        .foregroundColor(Color.black)
-                }
-                .padding()
+                
                 
                 Button(action: {
                     emojiGame.changeTheme()
                 }) {
+                    Image(systemName: "capsule.inset.filled").foregroundStyle(Color.black)
                     Text("New Game!")
                         .font(.title3)
                         .foregroundColor(Color.black)

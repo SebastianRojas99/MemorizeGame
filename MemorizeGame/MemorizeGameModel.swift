@@ -11,6 +11,7 @@ import Foundation
 
 struct MemoryGame<CardContent> where CardContent:Equatable{
     private(set) var cards:Array<Card>
+    private var score:Int
     var indexOfCard:Int?{
         get{cards.indices.filter{index in cards[index].isFaceUp}.only}
         set{cards.indices.forEach{cards[$0].isFaceUp = (newValue==$0)}}
@@ -18,6 +19,7 @@ struct MemoryGame<CardContent> where CardContent:Equatable{
     
     
     init(numberOfPairsOfCards:Int,cardContentFactory:(Int)->CardContent) {
+        score = 0
         cards = []
         for pairIndex in 0..<max(2, numberOfPairsOfCards){
             let content = cardContentFactory(pairIndex)
@@ -73,7 +75,9 @@ struct MemoryGame<CardContent> where CardContent:Equatable{
         }
     }
     
-
+    struct Theme:Equatable{
+        
+    }
     
 }
 
