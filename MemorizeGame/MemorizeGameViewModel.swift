@@ -23,6 +23,11 @@ class EmojiMemoryGame: ObservableObject {
         return emojiMemoryModel.cards
     }
     
+    
+    var score:Int{
+        return emojiMemoryModel.score
+    }
+    
     func choose(_ card: MemoryGame<String>.Card) {
         emojiMemoryModel.choose(card)
         

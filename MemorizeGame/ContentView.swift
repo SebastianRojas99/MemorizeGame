@@ -18,6 +18,7 @@ struct EmojiMemoryGameView: View {
                 .bold()
                 .foregroundColor(Color.primary)
                 .padding()
+            Text("\(emojiGame.score)").font(.headline)
             
             ScrollView {
                 cards
