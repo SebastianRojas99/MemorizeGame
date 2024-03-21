@@ -9,14 +9,13 @@ import SwiftUI
 class EmojiMemoryGame: ObservableObject {
     
     var currentTheme:Theme = .green
-    
     private var currentEmojiIndex = 0
-    private static let foo = Int.random(in: 2...11)
+    
     @Published private var emojiMemoryModel: MemoryGame<String>
     
     
     init() {
-        emojiMemoryModel = EmojiMemoryGame.createMemoryGame(theme: currentTheme,isFoo: EmojiMemoryGame.foo)
+        emojiMemoryModel = EmojiMemoryGame.createMemoryGame(theme: currentTheme)
     }
     
     var cards: Array<MemoryGame<String>.Card> {
@@ -37,19 +36,15 @@ class EmojiMemoryGame: ObservableObject {
     func changeTheme() {
         currentEmojiIndex = (currentEmojiIndex + 1) % Theme.allCases.count
         currentTheme = Theme.allCases[currentEmojiIndex]
-        emojiMemoryModel = EmojiMemoryGame.createMemoryGame(theme: currentTheme,isFoo: EmojiMemoryGame.foo)
+        emojiMemoryModel = EmojiMemoryGame.createMemoryGame(theme: currentTheme)
     }
 
-    
-    func shuffle() {
-        emojiMemoryModel.shuffle()
-        print(cards)
-    }
+   
     
     
-    private static func createMemoryGame(theme:Theme,isFoo:Int) -> MemoryGame<String> {
-        let isFoo = EmojiMemoryGame.foo
-        return MemoryGame(numberOfPairsOfCards: isFoo) { pairIndex in
+    private static func createMemoryGame(theme:Theme) -> MemoryGame<String> {
+        let numberOfPairsOfCards = max(2, min(Int.random(in: 2...(theme.emojis.count / 2)), 11))
+        return MemoryGame(numberOfPairsOfCards:numberOfPairsOfCards) { pairIndex in
             let emojis = theme.emojis
             if emojis.indices.contains(pairIndex) {
                 return emojis[pairIndex]
@@ -60,20 +55,7 @@ class EmojiMemoryGame: ObservableObject {
         }
     }
     
-    func getMinimumWidth() -> CGFloat {
-        switch EmojiMemoryGame.foo {
-        case 2:
-            return 120
-        case 3...4:
-            return 100
-        case 5...8:
-            return 80
-        case 9...16:
-            return 60
-        default:
-            return 40
-        }
-    }
+    
     enum Theme {
         case green
         case purple

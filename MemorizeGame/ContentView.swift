@@ -43,7 +43,7 @@ struct EmojiMemoryGameView: View {
     }
     
     var cards: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: emojiGame.getMinimumWidth()), spacing: 0)], spacing: 0) {
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 100), spacing: 0)], spacing: 0) {
             ForEach(emojiGame.cards) { card in
                 CardView(card: card)
                     .aspectRatio(2/3, contentMode: .fit)

@@ -52,13 +52,7 @@ struct MemoryGame<CardContent> where CardContent:Equatable{
             }
         }
     }
-    
-    
-    
-    
-    
-    
-    
+
     mutating func shuffle() {
         
         for index in cards.indices {
