@@ -10,7 +10,6 @@ class EmojiMemoryGame: ObservableObject {
     
     var currentTheme:Theme = .green
     private var currentEmojiIndex = 0
-    
     @Published private var emojiMemoryModel: MemoryGame<String>
     
     
