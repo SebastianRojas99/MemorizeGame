@@ -95,14 +95,38 @@ class EmojiMemoryGame: ObservableObject {
                 return ["🍊", "🎃", "🔥", "🌅", "🦊", "📙", "🧡", "🍑", "🥕", "🦁"]
             }
         }
-        var color:Color{
+        var color:LinearGradient{
             switch self{
-            case .green: return Color.green
-            case .purple: return Color.purple
-            case .red: return Color.red
-            case .yellow: return Color.yellow
-            case .blue: return Color.blue
-            case .orange: return Color.orange
+            case .green: return .linearGradient(
+                colors: [.black,.white, .green,.green],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            case .purple: return .linearGradient(
+                colors: [.black,.white, .purple,.purple],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            case .red: return .linearGradient(
+                colors: [.black,.white, .red,.red],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            case .yellow: return .linearGradient(
+                colors: [.black,.white, .yellow,.yellow],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            case .blue: return .linearGradient(
+                colors: [.black,.white, .blue,.blue],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            case .orange: return .linearGradient(
+                colors: [.black,.white, .orange,.orange],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
             }
         }
         
