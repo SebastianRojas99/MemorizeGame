@@ -6,13 +6,11 @@
 //
 import SwiftUI
 
+
 class EmojiMemoryGame: ObservableObject {
-    
     var currentTheme:Theme = .green
     private var currentEmojiIndex = 0
     @Published private var emojiMemoryModel: MemoryGame<String>
-    
-    
     init() {
         emojiMemoryModel = EmojiMemoryGame.createMemoryGame(theme: currentTheme)
     }
@@ -20,6 +18,13 @@ class EmojiMemoryGame: ObservableObject {
     var cards: Array<MemoryGame<String>.Card> {
         return emojiMemoryModel.cards
     }
+    
+    var timer: Int {
+        let now = Date()
+        let components = Calendar.current.dateComponents([.second], from: emojiMemoryModel.startTime, to: now)
+        return components.second ?? 0
+    }
+    
     
     
     var score:Int{

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EmojiMemoryGameView: View {
   @ObservedObject var emojiGame: EmojiMemoryGame
-
+    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
   var body: some View {
     VStack {
       Text(emojiGame.currentTheme.title)
@@ -18,7 +18,7 @@ struct EmojiMemoryGameView: View {
         .foregroundColor(Color.primary)
         .padding()
       Text("\(emojiGame.score)").font(.headline)
-
+        Text("\(emojiGame.timer)")
       ScrollView {
         cards
           .padding()
@@ -36,6 +36,9 @@ struct EmojiMemoryGameView: View {
             .padding()
         }
       }
+    }.onReceive(timer) { _ in
+        // Actualizar el temporizador cada vez que el temporizador emite un evento
+        emojiGame.objectWillChange.send()
     }
   }
 
