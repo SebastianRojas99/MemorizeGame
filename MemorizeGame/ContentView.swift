@@ -43,6 +43,8 @@ struct EmojiMemoryGameView: View {
   }
 
   var cards: some View {
+      GeometryReader{ geometry in
+          
     LazyVGrid(columns: [GridItem(.adaptive(minimum: 100), spacing: 0)], spacing: 0) {
       ForEach(emojiGame.cards.reversed()) { card in
         CardView(card: card)
@@ -53,6 +55,8 @@ struct EmojiMemoryGameView: View {
           }
       }
     }
+          
+      }
     .padding()
     .foregroundStyle(emojiGame.currentTheme.color)
   }
